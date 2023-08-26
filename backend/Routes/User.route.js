@@ -19,7 +19,7 @@ userRouter.post('/signup', async (req, res) => {
         city
     })
     await new_user.save();
-    res.send("Signup successful!");
+    res.json({"msg":"Signup successful!"});
 })
 
 userRouter.post('/login', async (req, res) => {
@@ -27,7 +27,7 @@ userRouter.post('/login', async (req, res) => {
     const user = await UserModel.findOne({ email: email })
 
     if (!user) {
-        res.send("Please SignUp!")
+        res.json({"msg" : "Please SignUp!"})
     }
 
     const hash = user.password
@@ -35,10 +35,10 @@ userRouter.post('/login', async (req, res) => {
 
     if (correct_password) {
         var token = jwt.sign({ userID: user._id }, process.env.JWT);
-        res.send({ "msg": "Login successful!", "token": token })
+        res.json({ "msg": "Login successful!", "token": token })
     }
     else {
-        res.send("Invalid password")
+        res.json({"msg":"Invalid password"})
     }
 })
 
