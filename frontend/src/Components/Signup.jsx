@@ -30,7 +30,7 @@ const Signup = () => {
             city
         }
 
-        fetch("http://localhost:8000/user/signup", {
+        fetch("https://gold-crayfish-yoke.cyclic.cloud/user/signup", {
             method: 'POST',
             headers: {
                 "content-type": "application/json"

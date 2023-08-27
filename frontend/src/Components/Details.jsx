@@ -13,7 +13,7 @@ export default function Details() {
     const navigate = useNavigate()
 
     const fetchData = () => {
-        fetch("http://localhost:8000/details", {
+        fetch("https://gold-crayfish-yoke.cyclic.cloud/details", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
