@@ -9,13 +9,7 @@ var cors = require('cors')
 const app = expres();
 
 app.use(expres.json());
-app.use(cors(
-    {
-        origin : [""],
-        methods: ["POSt" , "GET"],
-        credentials: true
-    }
-))
+app.use(cors())
 
 app.get("/", (req, res) => {
     res.send("Home");
