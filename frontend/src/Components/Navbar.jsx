@@ -11,11 +11,10 @@ const Navbar = () => {
         navigate('/details')
     }
 
-    
     const handleLogout = () => {
         localStorage.removeItem('token');
         // Redirect to the login page after logout
-        navigate("/details")
+        navigate("/")
     };
     return (
         <div>
@@ -38,7 +37,7 @@ const Navbar = () => {
                     </Flex>
                     <Spacer />
                     {token && (
-                        <Button size='lg' variant='ghost' onClick={handleLogout}>
+                        <Button size='lg' variant='outline' onClick={handleLogout}>
                             Logout
                         </Button>
                     )}

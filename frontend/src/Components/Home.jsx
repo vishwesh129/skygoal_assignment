@@ -27,7 +27,7 @@ const Home = () => {
               </VStack>
 
             </Center>
-            <Link to={"/details"}>
+            <Link to={"/signup"}>
               <Button size='lg' colorScheme='green' mt='50px' onClick={handleStart}>Get Started</Button>
             </Link>
           </div>

@@ -1,6 +1,7 @@
 import { Box, Button, Center, FormControl, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react'
 
 const Signup = () => {
     const [firstName, setFirstName] = useState("");
@@ -16,8 +17,10 @@ const Signup = () => {
         navigate("/login");
     }
 
+    const toast = useToast()
     const handleSignup = (event) => {
         event.preventDefault();
+        
         const user = {
             firstName,
             lastName,
@@ -37,7 +40,13 @@ const Signup = () => {
             .then(res => res.json()
                 .then(data => {
                     console.log(data);
-                    alert("Signup successful, Please Login");
+                    toast({
+                        title: 'Account created.',
+                        description: "We've created your account for you.",
+                        status: 'success',
+                        duration: 9000,
+                        isClosable: true,
+                      })
                     navigate("/login");
                 }))
             .catch((err) => console.error(err))
@@ -45,7 +54,7 @@ const Signup = () => {
 
     return (
         <div>
-            <Center mt={"50px"}>
+            <Center mt={"40px"}>
                 <Box backgroundColor={"gray.50"} p={"15px"} borderWidth='1px' overflow='hidden' w={"30%"} borderRadius={"10px"}>
                     <Heading>SIGN UP</Heading>
                     <FormControl isRequired>

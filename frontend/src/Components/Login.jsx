@@ -1,6 +1,7 @@
 import { Box, Button, Center, FormControl, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react'
 
 const Login = () => {
 
@@ -12,6 +13,7 @@ const Login = () => {
     }
 
     const navigate = useNavigate();
+    const toast = useToast()
 
     const handleLogin = () => {
         const user = { email, password }
@@ -27,10 +29,20 @@ const Login = () => {
                 console.log(data);
                 if (data.token) {
                     localStorage.setItem("token", data.token);
-                    alert("Login Successful");
+                    toast({
+                        title: 'Login Successful!.',
+                        description: "Welcome to SkyGoal.",
+                        status: 'success',
+                        duration: 9000,
+                        isClosable: true,
+                    })
                     navigate("/details");
                 } else {
-                    alert("Wrong password. Please try again.");
+                    toast({
+                        title: "Wrong password. Please try again.",
+                        status: 'error',
+                        isClosable: true,
+                    })
                 }
             })
             .catch((err) =>
@@ -39,7 +51,7 @@ const Login = () => {
     }
     return (
         <div>
-            <Center mt={"50px"}>
+            <Center mt={"40px"}>
                 <Box backgroundColor={"gray.50"} p={"15px"} borderWidth='1px' overflow='hidden' w={"30%"} borderRadius={"10px"}>
                     <Heading>LOG IN</Heading>
                     <FormControl isRequired>
